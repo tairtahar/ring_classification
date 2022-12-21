@@ -89,17 +89,6 @@ class LeNet(tf.keras.Model):
         print("model training is done")
         return history
 
-    def print_evaluation(self, x_test, y_test, verbose=0):
-        """
-        Evaluation of model performance
-        :param x_test: input images for testing
-        :param y_test: ground truth for testing
-        :param verbose: verbosity for testing phase
-        :return: NA
-        """
-        score = self.evaluate(x_test, y_test, verbose=verbose)
-        print('test loss:', score[0])
-        print('test accuracy:', score[1])
 
 
 class LeNetFCBN3(LeNet):

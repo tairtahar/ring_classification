@@ -1,17 +1,14 @@
-from utils import load_images_from_folder as loader
-from utils import load_data
-import cv2
-import numpy as np
-import random
-from sklearn.model_selection import train_test_split
 import models_handling
 import utils
 import argparse
 import pickle
 import visualizations
+import tensorflow as tf
+
 
 def main():
     data = utils.data_prepare()
+    x_train, x_val, x_test, y_train, y_val, y_test = data
 
     # PARAMETERS INITIALIZATION.
     parser = argparse.ArgumentParser()
@@ -30,19 +27,19 @@ def main():
     with open('temp_data/arguments', 'wb') as file_pi:
         pickle.dump(args_dict, file_pi)
 
-    history = models_handling.model_execution(data=data,
-                                              output_size=args.output_size,
-                                              batch_size=args.batch_size,
-                                              optimizer=args.optimizer,
-                                              epochs=args.epochs,
-                                              lr=args.learning_rate,
-                                              verbose=args.verbose,
-                                              save_path=args.save_path)
+    model, history = models_handling.model_training(data=data,
+                                                    output_size=args.output_size,
+                                                    batch_size=args.batch_size,
+                                                    optimizer=args.optimizer,
+                                                    epochs=args.epochs,
+                                                    lr=args.learning_rate,
+                                                    verbose=args.verbose,
+                                                    )
 
-    accuracy = list(history.history['accuracy'])
+    utils.print_evaluation(model, x_test, y_test, verbose=args.verbose)
+    tf.keras.models.save_model(model, args.save_path)
 
     if args.flag_visualizations:
-        # visualizations.plot_accuracy(accuracy, network)
         visualizations.plot_learning_curves(history)
 
 

@@ -79,3 +79,6 @@ wincertstore==0.2
 wrapt @ file:///C:/ci/wrapt_1638434029846/work
 yarl @ file:///C:/ci/yarl_1606940076464/work
 zipp @ file:///C:/ci/zipp_1652274073489/work
+
+tensorflow-gpu~=2.3.0
+numpy~=1.23.4
