@@ -27,5 +27,6 @@ For loading the model (.pb file):
 $ python test.py --model_path <trained model .pb file>
 ```
 
+The training process shown good performance as in the following image:
 
 ![results](https://github.com/tairtahar/ring_classification/blob/main/checkpoint5/results/Figure_2.png) 
