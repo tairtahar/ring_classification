@@ -25,3 +25,7 @@ $ python test.py --data_path <your new data path>
 For loading the model (.pb file):
 ```
 $ python test.py --model_path <trained model .pb file>
+```
+
+
+![results](https://github.com/tairtahar/ring_classification/blob/main/checkpoint5/results/Figure_2.png) 
