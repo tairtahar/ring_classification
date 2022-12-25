@@ -35,10 +35,11 @@ def load_data(path="data", train=True):
     return valid_imgs, y_valid, invalid_imgs, y_invalid
 
 
-def data_prepare(path="data", train=True):
+def data_prepare(path="data", train=True, seed=123):
     valid_imgs, y_valid, invalid_imgs, y_invalid = load_data(path, train)
     X_data = np.vstack((valid_imgs, invalid_imgs))
     y_data_1d = np.hstack((y_valid, y_invalid))
+    np.random.RandomState(seed=seed)
     perm = np.random.permutation(range(len(y_data_1d)))
     X_data = X_data[perm, :, :]
     y_data_1d = y_data_1d[perm]
@@ -56,8 +57,8 @@ def data_prepare(path="data", train=True):
     return data
 
 
-def test_data_load(path="data", train=True):
-    data = data_prepare(path, train)
+def test_data_load(path="data", train=True, seed=123):
+    data = data_prepare(path, train, seed)
     x_train, x_val, x_test, y_train, y_val, y_test = data
     return x_test, y_test
 

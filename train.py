@@ -7,8 +7,7 @@ import tensorflow as tf
 
 
 def main():
-    data = utils.data_prepare()
-    x_train, x_val, x_test, y_train, y_val, y_test = data
+
 
     # PARAMETERS INITIALIZATION.
     parser = argparse.ArgumentParser()
@@ -21,11 +20,15 @@ def main():
     parser.add_argument("--verbose", help="verbosity", default=1)
     parser.add_argument("--flag_visualizations", help="flag for presenting plots of the training process", default=1)
     parser.add_argument("--save_path", help="save model path", default="checkpoints")
+    parser.add_argument("--seed", help="seed for reproducible train/test distribution", default=123)
 
     args = parser.parse_args()
     args_dict = vars(args)
     with open('temp_data/arguments', 'wb') as file_pi:
         pickle.dump(args_dict, file_pi)
+
+    data = utils.data_prepare(seed=args.seed)
+    x_train, x_val, x_test, y_train, y_val, y_test = data
 
     model, history = models_handling.model_training(data=data,
                                                     output_size=args.output_size,
