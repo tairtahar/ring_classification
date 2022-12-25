@@ -6,7 +6,7 @@ import pickle
 
 def test():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model_path", help="path for model .pb file", type=str, default="checkpoints/saved_model.pb")
+    parser.add_argument("--model_path", help="path for model .pb file", type=str, default="checkpoints5/saved_model.pb")
     parser.add_argument("--data_path", help="path for the data to load", type=str, default="data")
     parser.add_argument("--verbose", help="verbosity", default=1)
 
